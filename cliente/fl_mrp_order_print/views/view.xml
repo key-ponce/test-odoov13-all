@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="paperformat_fl_mrp" model="report.paperformat">
+            <field name="name">FL MRP</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">28</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+    </data>
+
+    <template id="report_mrporder_fl" inherit_id="mrp.report_mrporder">
+        <xpath expr="//div[@class='page']" position="replace">
+            <div class="page">
+                <div class="oe_structure"/>
+                <div class="row">
+                    <div class="col-12" style="text-align:left;">
+                        <strong><span>Fecha de Produccion: </span></strong><span t-field="o.date_planned_start"/>
+                    </div>
+                </div>
+                <div class="row" style="padding-top:20px;">
+                    <div class="col-12" style="text-align:left;">
+                        <strong><span>Codigo: </span></strong><span t-field="o.default_code"/>
+                    </div>
+                    <div class="col-12" style="text-align:left;">
+                        <strong><span>Producto: </span></strong><span t-field="o.product_id.name"/>
+                    </div>
+                    <div class="col-12" style="text-align:left;">
+                        <strong><span>Cantidad a Producir: </span></strong><span t-field="o.product_id.name"/>
+                    </div>
+                </div>
+                <!--div class="row">
+                </div>
+                <div class="row">
+                </div-->
+
+            </div>
+        </xpath>
+    </template>
+
+    <!--record id="action_report_production_order_fl" model="ir.actions.report">
+        <field name="paperformat_id" ref="fl_mrp_order_print.paperformat_fl_mrp"/>
+    </record-->
+
+</odoo>
